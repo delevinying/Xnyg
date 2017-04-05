@@ -29,7 +29,7 @@
         //玩家
         this.player = new Player();
         this.player.x = 32 * 8;
-        this.player.y = 32 * 4;
+        this.player.y = 160 * 4;
         this.addChild(this.player);
     }
 })();

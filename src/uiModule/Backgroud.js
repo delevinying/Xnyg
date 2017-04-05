@@ -45,12 +45,12 @@
         this.bg2.pos(this.BG_WIDTH, 0);
         
         //前景图片草垛
-        this.grass = new laya.display.Sprite();
+//this.grass = new laya.display.Sprite();
         //绘制草垛
       //  this.grass.graphics.drawTexture(texture2, 0, 0);
         //把草垛居底部显示
         // this.grass.y = Browser.clientHeight - this.grass.height;
-        this.addChild(this.grass);
+       // this.addChild(this.grass);
         
         //创建一个帧循环处理函数，用于背景位置的更新，实现背景滚动效果。
         Laya.timer.frameLoop(1, this, this.onLoop)
@@ -71,10 +71,10 @@
             this.bg2.x += this.BG_WIDTH * 2;
         }
         //草移动
-        this.grass.x -= 5 * 0.5;
-        if(this.grass.x + 960 < 0){
-            this.grass.x = this.moveX + 852;
-        }
+        // this.grass.x -= 5 * 0.5;
+        // if(this.grass.x + 960 < 0){
+        //     this.grass.x = this.moveX + 852;
+        // }
     }
 	
 	
