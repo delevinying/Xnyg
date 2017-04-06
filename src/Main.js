@@ -32,7 +32,7 @@ asset.push({
     type : Laya.Loader.ATLAS
 });
     
-    
+
 //加载图集资源
 Laya.loader.load(asset, laya.utils.Handler.create(this, onLoaded), laya.utils.Handler.create(this, onLoading, null, false));
 

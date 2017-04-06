@@ -27,9 +27,33 @@
        // this.mapFloor = new MapFloor();
        // this.addChild(this.mapFloor);
         //玩家
+        
         this.player = new Player();
         this.player.x = 32 * 8;
         this.player.y = 160 * 4;
         this.addChild(this.player);
+
+        Laya.stage.on(laya.events.Event.MOUSE_DOWN,this,this.onMouseDown);
+        Laya.stage.on(laya.events.Keyboard.A,this,this.onKeyLeft)
+        Laya.timer.frameLoop(1,this,this.onLoop);
+    }
+
+    _proto.onLoop =  function(){
+        if(this.player.y>=610){
+            this.player.y = 610;
+            this.player.jumpReset();
+        }
+    }
+    _proto.onMouseDow = function(){
+        this.player.jump();
+    }
+
+    _proto.onKeyLeft = function(){
+        if(this.player.x>0){
+            this.player.x -= 5;
+        }else{
+            this.player.x = 0;
+        }
+        console.log("Hello");
     }
 })();
