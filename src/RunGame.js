@@ -6,7 +6,7 @@
  
         this.bg = null;
         this.mapFloor = null;
-        this.player = null;
+      //  this.player = null;
         RunGame.__super.call(this);
         this.init();
     }
@@ -19,19 +19,13 @@
     //初始化
     _proto.init = function(){
         console.log('RunGame Init');
- 
         //背景
         this.bg = new Background();
-        this.addChild(this.bg);
-        //地板
-       // this.mapFloor = new MapFloor();
-       // this.addChild(this.mapFloor);
-        //玩家
-        
-        this.player = new Player();
-        this.player.x = 32 * 8;
-        this.player.y = 160 * 4;
-        this.addChild(this.player);
+        this.addChild(this.bg);  
+        // this.player = new Player();
+        // this.player.x = 32 * 8;
+        // this.player.y = 160 * 4;
+        // this.addChild(this.player);
 
         Laya.stage.on(laya.events.Event.MOUSE_DOWN,this,this.onMouseDown);
         Laya.stage.on(laya.events.Keyboard.A,this,this.onKeyLeft)
@@ -39,13 +33,14 @@
     }
 
     _proto.onLoop =  function(){
-        if(this.player.y>=610){
-            this.player.y = 610;
-            this.player.jumpReset();
-        }
+        // if(this.player.y>=610){
+        //     this.player.y = 610;
+        //     this.player.jumpReset();
+        // }
     }
-    _proto.onMouseDow = function(){
-        this.player.jump();
+    _proto.onMouseDown = function(){
+        // this.player.jump();
+        //  console.log("onMouseDown");
     }
 
     _proto.onKeyLeft = function(){
@@ -54,6 +49,5 @@
         }else{
             this.player.x = 0;
         }
-        console.log("Hello");
     }
 })();

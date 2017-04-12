@@ -5,6 +5,7 @@
 			"name": "layaAir",
 			"type": "chrome",
 			"request": "launch",
+			// "file": "119.29.218.34/Xnyg/bin/index.html",
 			"file": "${workspaceRoot}/bin/index.html",
 			"runtimeExecutable": "${execPath}",
 			"useBuildInServer": true,

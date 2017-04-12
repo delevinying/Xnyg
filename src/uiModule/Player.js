@@ -1,16 +1,8 @@
-// Player.cached = true;
-//             //根据不同的动画 来创建动画模板
-//             laya.display.Animation.createFrames(['res/player/chara_01.png','res/player/chara_02.png','res/player/chara_03.png','res/player/chara_04.png'], Player.RUN);
-//             laya.display.Animation.createFrames(['res/player/chara_05.png','res/player/chara_06.png','res/player/chara_07.png','res/player/chara_08.png'], Player.FLY);
-//             //Animation.createFrames(['player/chara_09.png','player/chara_10.png','player/chara_11.png','player/chara_12.png'], Player.HERT);
-//             laya.display.Animation.createFrames(['res/player/chara_13.png','res/player/chara_14.png','res/player/chara_15.png','res/player/chara_16.png'], Player.JUMP);
-    
-    
-    (function () {
- /**
+ (function () {
+     
+    /**
      * 玩家类
      */
-     
     function Player(){
  
         //记录当前动作
@@ -73,7 +65,7 @@
                          
         }
          
-        if(this.body == null){
+       if(this.body == null){
  
             this.body = new laya.display.Animation();
             this.body.pivot(48,60);
@@ -113,6 +105,20 @@
             return;
         }
  
+        switch(this.action){
+            case Player.FLY:
+                 //如果当前是飞行状态 将玩家Y轴慢慢往上提 并且不超过最大值
+                 this.vy = 0;
+                 this.y -= 4;
+                 if(this.y < 110)
+                    this.y = 110;
+            break;
+            case Player.HERT:
+            break;
+            default:
+                 
+            break;
+        }
     }
     //开始跳
     _proto.gotoJump = function(){
@@ -125,15 +131,25 @@
     //开始飞
     _proto.gotoFly = function(){
         this.playAction(Player.FLY);
-    };
+    }
     /**
      * 触发跳（二连跳）
      */
     _proto.jump = function(){
-        this.gotoJump();
+        //当跳跃计数小于最大计数的时候 可以连续跳跃
+        if(this.jumpCount < this.jumpCountMax){
+            this.vy = -30;
+            this.jumpCount++;
+            this.gotoJump();
+        }else{
+            this.gotoFly();
+        }
+         
     }
      //跳结束重置
     _proto.jumpReset = function(){
-        
+        this.vy = 0;
+        this.jumpCount = 0;
+        this.gotoRun();
     }
 })();

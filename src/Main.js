@@ -9,8 +9,8 @@ Laya.stage.scaleMode = "showall";
 Laya.stage.alignH = "center";
 //设置横屏
 Laya.stage.screenMode = "horizontal";
-
-
+var player1;
+var player2;
 //加载单个资源
 var asset = [];
 asset.push({
@@ -46,7 +46,31 @@ function onLoaded(){
     //实例化RunGame
     var runGame = new RunGame();
     Laya.stage.addChild(runGame);
+    Laya.stage.addChild(runGame);
+    player1 = new Player();
+    player1.x = 32 * 8;
+    player1.y = 160 * 4;
+    Laya.stage.addChild(player1);
+    player2 = new Player();
+    player2.x = 800;
+    player2.y = 160 * 4;
+    Laya.stage.addChild(player2);
     Laya.stage.addChild(fairygui.GRoot.inst.displayObject);
     fairygui.UIPackage.addPackage("res/Joystick"); 
-    new MainPanel();
+    new MainPanel(player1);
+    Laya.timer.frameLoop(1,this,this.onLoop);
+
+    
 } 
+
+var onLoop =  function(){
+        if(player1.y>=610){
+            player1.y = 610;
+            player1.jumpReset();
+        }
+         if(player2.y>=610){
+            player2.y = 610;
+            player2.jumpReset();
+        }
+    }
+ 
