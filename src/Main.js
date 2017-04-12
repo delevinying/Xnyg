@@ -16,7 +16,8 @@ var asset = [];
 asset.push({
     url : [
         "res/background.png",
-        "res/Joystick@atlas0.png"
+        "res/Joystick@atlas0.png",
+        "res/IMGjump.png"
     ],
     type : Laya.Loader.IMAGE
 });
@@ -55,22 +56,28 @@ function onLoaded(){
     player2.x = 800;
     player2.y = 160 * 4;
     Laya.stage.addChild(player2);
+
+    var jumpBtn = new JumpBtn();
+    Laya.stage.addChild(jumpBtn);
+
     Laya.stage.addChild(fairygui.GRoot.inst.displayObject);
     fairygui.UIPackage.addPackage("res/Joystick"); 
     new MainPanel(player1);
     Laya.timer.frameLoop(1,this,this.onLoop);
-
     
 } 
-
 var onLoop =  function(){
-        if(player1.y>=610){
-            player1.y = 610;
-            player1.jumpReset();
-        }
-         if(player2.y>=610){
-            player2.y = 610;
-            player2.jumpReset();
-        }
+    if(player1.y>=610){
+        player1.y = 610;
+        player1.jumpReset();
     }
+        if(player2.y>=610){
+        player2.y = 610;
+        player2.jumpReset();
+    }
+}
+
+
+
+
  
