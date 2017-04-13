@@ -11,8 +11,8 @@ var MainPanel = (function () {
     }
     var _compass = -2;
     MainPanel.prototype.onJoystickMoving = function (degree) {
-        this._text.text = "" + degree;
-       
+        this._text.text = "s" + degree+"s";
+    
         if(degree>45&&degree<135){
             return;
         }else if(45>degree&&degree>-45){
@@ -22,7 +22,6 @@ var MainPanel = (function () {
         }else{
             _compass = 0;
         }
-        // player1.x += _compass;
        Laya.timer.frameLoop(1,MainPanel.this,onLoop);
     };
 
@@ -46,7 +45,7 @@ var MainPanel = (function () {
 
     MainPanel.prototype.onJoystickUp = function () {
         this._text.text = "";
+        _compass = 0;
     };
     return MainPanel;
 }());
-//# sourceMappingURL=MainPanel.js.map

@@ -39,7 +39,6 @@ Laya.loader.load(asset, laya.utils.Handler.create(this, onLoaded), laya.utils.Ha
 
 //加载进度
 function onLoading(progress){
-    console.log("onLoading: " + progress);
 }
 //加载完毕
 function onLoaded(){
@@ -56,16 +55,23 @@ function onLoaded(){
     player2.x = 800;
     player2.y = 160 * 4;
     Laya.stage.addChild(player2);
-
-    var jumpBtn = new JumpBtn();
-    Laya.stage.addChild(jumpBtn);
-
+    var texture1 = Laya.loader.getRes('res/IMGjump.png');
+    var _jump = new laya.display.Sprite();
+    _jump.graphics.drawTexture(texture1, 1000, 610,100,100);
+    Laya.stage.on(laya.events.Event.MOUSE_DOWN,this,onMouseDown);
+    Laya.stage.addChild(_jump);
     Laya.stage.addChild(fairygui.GRoot.inst.displayObject);
     fairygui.UIPackage.addPackage("res/Joystick"); 
     new MainPanel(player1);
     Laya.timer.frameLoop(1,this,this.onLoop);
-    
 } 
+
+ function onMouseDown(){
+     
+        player1.jump();
+        // console.log("onMouseDownssssssss");
+}
+
 var onLoop =  function(){
     if(player1.y>=610){
         player1.y = 610;
